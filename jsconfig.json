@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "tes/*": ["tes/*"],
+      "components/*": ["components/*"],
+      "assets/*": ["assets/*"],
+      "screens/*": ["screens/*"]
+    }
+  }
+}
