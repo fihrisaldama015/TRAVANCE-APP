@@ -3,94 +3,134 @@
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "screens/Home";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-const Tab = createBottomTabNavigator();
-import { HomeSvg, PortofolioSvg, ProfileSvg, SocialSvg, StrategySvg } from "assets/svg/Tab";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { HomeSvg, PortofolioSvg, ProfileSvg, SocialSvg, StrategySvg } from "components/atoms/SVG";
 import PortofolioScreen from "screens/Portofolio";
-import SocialScreen from "screens/Social";
 import StrategyScreen from "screens/Strategy";
 import ProfileScreen from "screens/Profile";
+import SocialCommunityScreen from "screens/Social/community";
+import SocialEducationScreen from "screens/Social/education";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Constants from "expo-constants";
+import Login from "screens/Login";
+import LoginEmailPassword from "screens/Login/EmailPassword";
+import SignUpEmailPassword from "screens/Login/SignupEmailPassword";
+import { useEffect, useState } from "react";
+import { onAuthStateChangedListener } from "utils/firebase.utils";
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
+const Social = () => {
+  return (
+    <TopTab.Navigator screenOptions={{ tabBarItemStyle: { marginTop: Constants.statusBarHeight }, tabBarLabelStyle: { fontSize: 12, fontWeight: "700" } }}>
+      <TopTab.Screen options={{ headerShown: false, title: "Education" }} name="Social/Education" component={SocialEducationScreen} />
+      <TopTab.Screen options={{ headerShown: false, title: "Community" }} name="Social/Community" component={SocialCommunityScreen} />
+    </TopTab.Navigator>
+  );
+};
+
+const InitialRoute = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <>
+                <HomeSvg color={color} size={size} />
+              </>
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Social"
+        component={Social}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Social",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <>
+                <SocialSvg color={color} size={size} />
+              </>
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Portofolio"
+        component={PortofolioScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Portofolio",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <>
+                <PortofolioSvg color={color} size={size} />
+              </>
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Strategy"
+        component={StrategyScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Strategy",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <>
+                <StrategySvg color={color} size={size} />
+              </>
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <>
+                <ProfileSvg color={color} size={size} />
+              </>
+            );
+          },
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+const LoginRoute = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen options={{ headerShown: false }} name="login/index" component={Login} />
+      <Stack.Screen options={{ title: "", headerShadowVisible: false, headerStyle: { height: 10 } }} name="login/email" component={LoginEmailPassword} />
+      <Stack.Screen options={{ title: "", headerShadowVisible: false, headerStyle: { height: 10 } }} name="login/email/signup" component={SignUpEmailPassword} />
+    </Stack.Navigator>
+  );
+};
 function Routes() {
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    onAuthStateChangedListener((user) => {
+      setUser(user);
+    });
+  }, []);
   return (
     <>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              headerShown: false,
-              tabBarLabel: "Home",
-              tabBarIcon: ({ color, size }) => {
-                return (
-                  <>
-                    <HomeSvg color={color} size={size} />
-                  </>
-                );
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Social"
-            component={SocialScreen}
-            options={{
-              headerShown: false,
-              tabBarLabel: "Social",
-              tabBarIcon: ({ color, size }) => {
-                return (
-                  <>
-                    <SocialSvg color={color} size={size} />
-                  </>
-                );
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Portofolio"
-            component={PortofolioScreen}
-            options={{
-              headerShown: false,
-              tabBarLabel: "Portofolio",
-              tabBarIcon: ({ color, size }) => {
-                return (
-                  <>
-                    <PortofolioSvg color={color} size={size} />
-                  </>
-                );
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Strategy"
-            component={StrategyScreen}
-            options={{
-              headerShown: false,
-              tabBarLabel: "Strategy",
-              tabBarIcon: ({ color, size }) => {
-                return (
-                  <>
-                    <StrategySvg color={color} size={size} />
-                  </>
-                );
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Profile"
-            component={ProfileScreen}
-            options={{
-              headerShown: false,
-              tabBarLabel: "Profile",
-              tabBarIcon: ({ color, size }) => {
-                return (
-                  <>
-                    <ProfileSvg color={color} size={size} />
-                  </>
-                );
-              },
-            }}
-          />
-        </Tab.Navigator>
+        <Stack.Navigator>{!user ? <Stack.Screen options={{ headerShown: false }} name="login" component={LoginRoute} /> : <Stack.Screen options={{ headerShown: false }} name="initial" component={InitialRoute} />}</Stack.Navigator>
       </NavigationContainer>
     </>
   );
