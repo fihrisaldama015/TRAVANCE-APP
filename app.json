@@ -8,7 +8,6 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/img/travance.png",
-      "resizeMode": "center",
       "backgroundColor": "#ffffff",
       "padding": 10
     },
@@ -23,10 +22,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.mazino2911.travance"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "32c34868-c9b4-4046-b5b4-d24f2732c10a"
+      }
     }
   }
 }

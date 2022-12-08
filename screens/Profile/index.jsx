@@ -1,3 +1,7 @@
+import { async } from "@firebase/util";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import { signOutUser } from "utils/firebase.utils";
+
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -13,103 +17,99 @@ import SVGArrow from "../../assets/svg/arrow.svg";
 
 export default function ProfileScreen({ navigation }) {
   return (
-    <SafeAreaView style={style.container}>
-      <LinearGradient
-        style={style.profileCard}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1.2 }}
-        locations={[0.5, 1]}
-        colors={["#4650FF", "rgba(196, 122, 255, 0.71)"]}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            width: "100%",
-            padding: 16,
-            flex: 1,
-          }}
-        >
-          <SVGProfile width={80} height={80} />
-          <View style={{ flex: 1, paddingHorizontal: 16 }}>
-            <Text style={style.username}>Sample User Name</Text>
-            <Text style={style.userEmail}>usersample@gmail.com</Text>
-            <View style={style.saldoSection}>
-              <Text style={{ color: "white", fontSize: 14 }}>Saldo : </Text>
-              <Text
-                style={{ color: "white", fontSize: 22, fontWeight: "bold" }}
-              >
-                Rp. 116,95
-              </Text>
-            </View>
-            <View style={style.profitSection}>
-              <Text style={{ color: "white", marginRight: 4, fontSize: 11 }}>
-                Profit :
-              </Text>
-              <View
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: 32,
-                  paddingVertical: 4,
-                  paddingHorizontal: 4,
-                }}
-              >
-                <Text style={{ fontSize: 11 }}>+21.00%</Text>
+    <View>
+      <SafeAreaView style={style.container}>
+        <LinearGradient style={style.profileCard} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.2 }} locations={[0.5, 1]} colors={["#4650FF", "rgba(196, 122, 255, 0.71)"]}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              width: "100%",
+              padding: 16,
+              flex: 1,
+            }}
+          >
+            <SVGProfile width={80} height={80} />
+            <View style={{ flex: 1, paddingHorizontal: 16 }}>
+              <Text style={style.username}>Sample User Name</Text>
+              <Text style={style.userEmail}>usersample@gmail.com</Text>
+              <View style={style.saldoSection}>
+                <Text style={{ color: "white", fontSize: 14 }}>Saldo : </Text>
+                <Text style={{ color: "white", fontSize: 22, fontWeight: "bold" }}>Rp. 116,95</Text>
+              </View>
+              <View style={style.profitSection}>
+                <Text style={{ color: "white", marginRight: 4, fontSize: 11 }}>Profit :</Text>
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: 32,
+                    paddingVertical: 4,
+                    paddingHorizontal: 4,
+                  }}
+                >
+                  <Text style={{ fontSize: 11 }}>+21.00%</Text>
+                </View>
               </View>
             </View>
           </View>
+        </LinearGradient>
+        <View style={style.optionMenu}>
+          <View style={{ flexDirection: "row" }}>
+            <SVGHistory width={24} height={24} style={{ marginRight: 12 }} />
+            <Text style={style.optionTitle}>History</Text>
+          </View>
+          <SVGArrow width={8} height={16} />
         </View>
-      </LinearGradient>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGHistory width={24} height={24} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>History</Text>
+        <View style={style.optionMenu}>
+          <View style={{ flexDirection: "row" }}>
+            <SVGWallet width={24} height={20} style={{ marginRight: 12 }} />
+            <Text style={style.optionTitle}>Wallet</Text>
+          </View>
+          <SVGArrow width={8} height={16} />
         </View>
-        <SVGArrow width={8} height={16} />
-      </View>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGWallet width={24} height={20} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>Wallet</Text>
+        <View style={style.optionMenu}>
+          <View style={{ flexDirection: "row" }}>
+            <SVGNotification width={24} height={24} style={{ marginRight: 12 }} />
+            <Text style={style.optionTitle}>Notification</Text>
+          </View>
+          <SVGArrow width={8} height={16} />
         </View>
-        <SVGArrow width={8} height={16} />
-      </View>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGNotification width={24} height={24} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>Notification</Text>
+        <View style={style.optionMenu}>
+          <View style={{ flexDirection: "row" }}>
+            <SVGSecurity width={24} height={24} style={{ marginRight: 12 }} />
+            <Text style={style.optionTitle}>Security</Text>
+          </View>
+          <SVGArrow width={8} height={16} />
         </View>
-        <SVGArrow width={8} height={16} />
-      </View>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGSecurity width={24} height={24} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>Security</Text>
+        <View style={style.optionMenu}>
+          <View style={{ flexDirection: "row" }}>
+            <SVGHelp width={24} height={24} style={{ marginRight: 12 }} />
+            <Text style={style.optionTitle}>Help & Support</Text>
+          </View>
+          <SVGArrow width={8} height={16} />
         </View>
-        <SVGArrow width={8} height={16} />
-      </View>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGHelp width={24} height={24} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>Help & Support</Text>
+        <View style={style.optionMenu}>
+          <View style={{ flexDirection: "row" }}>
+            <SVGTerms width={20} height={24} style={{ marginRight: 12 }} />
+            <Text style={style.optionTitle}>Terms and Conditions</Text>
+          </View>
+          <SVGArrow width={8} height={16} />
         </View>
-        <SVGArrow width={8} height={16} />
-      </View>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGTerms width={20} height={24} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>Terms and Conditions</Text>
-        </View>
-        <SVGArrow width={8} height={16} />
-      </View>
-      <View style={style.optionMenu}>
-        <View style={{ flexDirection: "row" }}>
-          <SVGLogout width={28} height={28} style={{ marginRight: 12 }} />
-          <Text style={style.optionTitle}>Log Out</Text>
-        </View>
-      </View>
-    </SafeAreaView>
+        <Pressable
+          onPress={() => {
+            signOutUser();
+          }}
+        >
+          <View style={style.optionMenu}>
+            <View style={{ flexDirection: "row" }}>
+              <SVGLogout width={28} height={28} style={{ marginRight: 12 }} />
+              <Text style={style.optionTitle}>Log Out</Text>
+            </View>
+          </View>
+        </Pressable>
+      </SafeAreaView>
+    </View>
   );
 }
 
@@ -121,8 +121,7 @@ const style = StyleSheet.create({
     height: "100%",
   },
   profileCard: {
-    backgroundColor:
-      "linear-gradient(180deg, #4650FF 68.23%, rgba(196, 122, 255, 0.71) 100%);",
+    backgroundColor: "linear-gradient(180deg, #4650FF 68.23%, rgba(196, 122, 255, 0.71) 100%);",
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
