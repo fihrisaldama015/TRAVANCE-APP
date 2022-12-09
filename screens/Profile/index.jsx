@@ -19,7 +19,13 @@ export default function ProfileScreen({ navigation }) {
   return (
     <View>
       <SafeAreaView style={style.container}>
-        <LinearGradient style={style.profileCard} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.2 }} locations={[0.5, 1]} colors={["#4650FF", "rgba(196, 122, 255, 0.71)"]}>
+        <LinearGradient
+          style={style.profileCard}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1.2 }}
+          locations={[0.5, 1]}
+          colors={["#4650FF", "#C47AFFB5"]}
+        >
           <View
             style={{
               flexDirection: "row",
@@ -35,20 +41,53 @@ export default function ProfileScreen({ navigation }) {
               <Text style={style.username}>Sample User Name</Text>
               <Text style={style.userEmail}>usersample@gmail.com</Text>
               <View style={style.saldoSection}>
-                <Text style={{ color: "white", fontSize: 14 }}>Saldo : </Text>
-                <Text style={{ color: "white", fontSize: 22, fontWeight: "bold" }}>Rp. 116,95</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 14,
+                    fontWeight: "700",
+                    fontFamily: "poppins-regular",
+                  }}
+                >
+                  Saldo :{" "}
+                </Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 22,
+                    fontWeight: "bold",
+                    fontFamily: "poppins-regular",
+                  }}
+                >
+                  Rp. 116,95
+                </Text>
               </View>
               <View style={style.profitSection}>
-                <Text style={{ color: "white", marginRight: 4, fontSize: 11 }}>Profit :</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    marginRight: 4,
+                    fontSize: 14,
+                    fontFamily: "poppins-regular",
+                  }}
+                >
+                  Profit
+                </Text>
                 <View
                   style={{
                     backgroundColor: "white",
                     borderRadius: 32,
                     paddingVertical: 4,
-                    paddingHorizontal: 4,
+                    paddingHorizontal: 8,
                   }}
                 >
-                  <Text style={{ fontSize: 11 }}>+21.00%</Text>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    +21.00%
+                  </Text>
                 </View>
               </View>
             </View>
@@ -70,7 +109,11 @@ export default function ProfileScreen({ navigation }) {
         </View>
         <View style={style.optionMenu}>
           <View style={{ flexDirection: "row" }}>
-            <SVGNotification width={24} height={24} style={{ marginRight: 12 }} />
+            <SVGNotification
+              width={24}
+              height={24}
+              style={{ marginRight: 12 }}
+            />
             <Text style={style.optionTitle}>Notification</Text>
           </View>
           <SVGArrow width={8} height={16} />
@@ -121,7 +164,8 @@ const style = StyleSheet.create({
     height: "100%",
   },
   profileCard: {
-    backgroundColor: "linear-gradient(180deg, #4650FF 68.23%, rgba(196, 122, 255, 0.71) 100%);",
+    backgroundColor:
+      "linear-gradient(180deg, #4650FF 68.23%, rgba(196, 122, 255, 0.71) 100%);",
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
@@ -134,11 +178,14 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     borderBottomColor: "rgba(0, 0, 0, 0.1)",
     borderBottomWidth: 2,
-    paddingHorizontal: 16,
-    paddingVertical: 20,
+    paddingLeft: 20,
+    paddingRight: 28,
+    paddingVertical: 24,
   },
   optionTitle: {
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: "bold",
+    fontFamily: "poppins-regular",
   },
   saldoSection: {
     flexDirection: "row",
@@ -152,12 +199,14 @@ const style = StyleSheet.create({
   username: {
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "poppins-regular",
     color: "white",
   },
   userEmail: {
     fontSize: 12,
     color: "white",
     fontWeight: "300",
+    fontFamily: "poppins-regular",
     paddingBottom: 4,
     lineHeight: 14,
   },
