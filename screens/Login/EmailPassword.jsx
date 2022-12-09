@@ -7,7 +7,6 @@ import { EmailIcon, EyePassIcon, FacebookIcon, GithubIcon, GoogleIcon, PassIcon 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { signInAuthUserWithEmailAndPassword, signOutUser } from "utils/firebase.utils";
 import Toast from "react-native-toast-message";
-
 export default function LoginEmailPassword({ navigation }) {
   const [email, onChangeEmail] = useState("");
   const [pass, onChangePass] = useState("");
@@ -18,6 +17,7 @@ export default function LoginEmailPassword({ navigation }) {
       if (email !== "" && pass !== "") {
         console.log("login");
         await signInAuthUserWithEmailAndPassword(email, pass);
+
         Toast.show({
           type: "success",
           text1: "Sign in success",

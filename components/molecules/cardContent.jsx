@@ -12,7 +12,7 @@ function CardContent({ data }) {
       }}
       style={{ marginHorizontal: 6, marginVertical: 8 }}
     >
-      <View style={{ position: "relative", elevation: 5, width: 170, height: 206, backgroundColor: "white", borderRadius: 10, display: "flex", overflow: "hidden" }}>
+      <View style={{ position: "relative", elevation: 5, width: 150, height: 200, backgroundColor: "white", borderRadius: 10, display: "flex", overflow: "hidden" }}>
         <View style={{ height: "50%", backgroundColor: "gray", overflow: "hidden", flexShrink: 0 }}>
           <Image source={data.img} />
         </View>

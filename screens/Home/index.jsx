@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, Pressable, Button, FlatList, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import profileImage from "assets/img/profile.png";
 import CardContent from "components/molecules/cardContent";
 import Constants from "expo-constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function HomeScreen() {
+  const [userName, setUserName] = useState("");
   const DATA = [
     { text: "Investasi Untuk Pemula : 10 Hal yang harus dihindari investor pemula ", img: require("assets/img/1.png") },
     {
@@ -31,13 +33,25 @@ export default function HomeScreen() {
   const chooseHomeSection = (section) => {
     setHomeSection(section);
   };
+  useEffect(() => {
+    const getUserName = async () => {
+      try {
+        const getUserName = await AsyncStorage.getItem("username");
+        console.log(getUserName);
+        setUserName(getUserName);
+      } catch (error) {
+        console.log("get username error :", error);
+      }
+    };
+    getUserName();
+  }, []);
   return (
-    <View style={{ paddingTop: Constants.statusBarHeight, paddingHorizontal: 18 }}>
+    <View style={{ paddingTop: Constants.statusBarHeight, paddingHorizontal: 10 }}>
       <ScrollView>
         <View>
           <View>
             <View style={{}}>
-              <Text style={{ fontWeight: "800", fontSize: 16, fontFamily: "poppins-regular" }}>Sample User Name</Text>
+              <Text style={{ fontWeight: "800", fontSize: 16, fontFamily: "poppins-regular" }}>{userName ? userName : ""}</Text>
             </View>
             <View style={{ marginTop: 2 }}>
               <Text style={{ fontSize: 12, fontWeight: "400", fontFamily: "poppins-regular" }}>Wellcome Back</Text>
@@ -67,7 +81,7 @@ export default function HomeScreen() {
             </LinearGradient>
           </View>
           {/* choosecontent */}
-          <View style={{ display: "flex", flexDirection: "row", marginTop: 40 }}>
+          <View style={{ display: "flex", flexDirection: "row", marginTop: 40, marginBottom: 10, marginLeft: 10 }}>
             <Pressable
               onPress={() => {
                 console.log("press");
@@ -95,8 +109,8 @@ export default function HomeScreen() {
           {/* container card */}
         </View>
         <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          {DATA.map((cardContentData) => {
-            return <CardContent data={cardContentData} />;
+          {DATA.map((cardContentData, i) => {
+            return <CardContent key={i} data={cardContentData} />;
           })}
         </View>
       </ScrollView>

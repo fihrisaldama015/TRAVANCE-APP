@@ -1,6 +1,7 @@
 // In App.js in a new project
 
 import { NavigationContainer } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import HomeScreen from "screens/Home";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -122,11 +123,41 @@ const LoginRoute = () => {
 };
 function Routes() {
   const [user, setUser] = useState("");
+  let [userName, setUserName] = useState("");
   useEffect(() => {
-    onAuthStateChangedListener((user) => {
-      setUser(user);
+    onAuthStateChangedListener((usercatch) => {
+      try {
+        setUser(usercatch);
+        const saveUser = async () => {
+          await AsyncStorage.setItem("user_travance", JSON.stringify(usercatch));
+        };
+        saveUser();
+      } catch (error) {
+        console.log(error);
+      }
     });
   }, []);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const userJSON = await AsyncStorage.getItem("user_travance");
+        const user = JSON.parse(userJSON);
+        const email = user.email;
+        userName = email.split("@")[0];
+        const saveUserName = async () => {
+          try {
+            await AsyncStorage.setItem("username", userName);
+          } catch (error) {
+            console.log("set error username :", error);
+          }
+        };
+        saveUserName();
+      } catch (error) {
+        console.log("ERROR LOG :", error);
+      }
+    };
+    getData();
+  }, [user]);
   return (
     <>
       <NavigationContainer>
