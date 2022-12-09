@@ -1,11 +1,30 @@
 import React, { useState } from "react";
-import { View, Text, Image, Pressable, TextInput, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import Constants from "expo-constants";
 import TravenceLogo from "assets/img/TLogo.png";
 import getstartedimage from "assets/img/Get.png";
-import { EmailIcon, EyePassIcon, FacebookIcon, GithubIcon, GoogleIcon, PassIcon } from "components/atoms/SVG";
+import {
+  EmailIcon,
+  EyePassIcon,
+  FacebookIcon,
+  GithubIcon,
+  GoogleIcon,
+  PassIcon,
+} from "components/atoms/SVG";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { createAuthUserWithEmailAndPassword, signInAuthUserWithEmailAndPassword } from "utils/firebase.utils";
+import {
+  createAuthUserWithEmailAndPassword,
+  signInAuthUserWithEmailAndPassword,
+} from "utils/firebase.utils";
 import Toast from "react-native-toast-message";
 
 export default function SignUpEmailPassword({ navigation }) {
@@ -62,17 +81,69 @@ export default function SignUpEmailPassword({ navigation }) {
         flexGrow: 1,
       }}
     >
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={-100}>
-        <View style={{ backgroundColor: "white", display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={-100}
+      >
+        <View
+          style={{
+            backgroundColor: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
           <Image style={{ width: 180 }} source={TravenceLogo} />
-          <Image style={{ marginTop: 8, marginBottom: 30 }} source={getstartedimage} />
+          <Image
+            style={{ marginTop: 8, marginBottom: 30 }}
+            source={getstartedimage}
+          />
           <View>
-            <View style={{ width: 300, borderRadius: 10, borderColor: "gray", height: 40, margin: 12, borderWidth: 1, padding: 10, display: "flex", flexDirection: "row" }}>
+            <View
+              style={{
+                width: 300,
+                borderRadius: 10,
+                borderColor: "gray",
+                height: 40,
+                margin: 12,
+                borderWidth: 1,
+                padding: 10,
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
               <EmailIcon style={{ marginRight: 5 }} />
-              <TextInput style={{ width: 250 }} placeholder="Email" cursorColor={"gray"} onChangeText={onChangeEmail} value={email} />
+              <TextInput
+                style={{ width: 250 }}
+                placeholder="Email"
+                cursorColor={"gray"}
+                onChangeText={onChangeEmail}
+                value={email}
+              />
             </View>
-            <View style={{ width: 300, borderRadius: 10, borderColor: "gray", height: 40, margin: 12, borderWidth: 1, padding: 10, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-              <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+            <View
+              style={{
+                width: 300,
+                borderRadius: 10,
+                borderColor: "gray",
+                height: 40,
+                margin: 12,
+                borderWidth: 1,
+                padding: 10,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
                 <PassIcon style={{ marginRight: 5 }} />
                 <TextInput
                   style={{ width: 200 }}
@@ -120,35 +191,85 @@ export default function SignUpEmailPassword({ navigation }) {
                   borderRadius: 14,
                 }}
               >
-                <Text style={{ color: "white", fontWeight: "700", fontFamily: "poppins-regular", marginLeft: 10 }}>Sign up With Email & Password</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "700",
+                    fontFamily: "poppins-regular",
+                    marginLeft: 10,
+                  }}
+                >
+                  Sign up With Email & Password
+                </Text>
               </View>
             </Pressable>
           </View>
           {/* or continue*/}
           <View style={{ marginVertical: 20 }}>
-            <Text style={{ fontFamily: "poppins-regular", fontSize: 16 }}>Or Continue With </Text>
+            <Text style={{ fontFamily: "poppins-regular", fontSize: 16 }}>
+              Or Continue With{" "}
+            </Text>
           </View>
           {/* login click container */}
           <View style={{ display: "flex", flexDirection: "row" }}>
-            <View style={{ width: 56, height: 56, borderColor: "gray", borderWidth: 1, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                width: 56,
+                height: 56,
+                borderColor: "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <FacebookIcon style={{ width: 15, height: 15 }} />
             </View>
-            <View style={{ marginHorizontal: 60, width: 56, height: 56, borderColor: "gray", borderWidth: 1, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                marginHorizontal: 60,
+                width: 56,
+                height: 56,
+                borderColor: "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <GoogleIcon style={{ width: 15, height: 15 }} />
             </View>
-            <View style={{ width: 56, height: 56, borderColor: "gray", borderWidth: 1, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                width: 56,
+                height: 56,
+                borderColor: "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <GithubIcon style={{ width: 15, height: 15 }} />
             </View>
           </View>
           {/* Dont have Account */}
-          <View style={{ display: "flex", flexDirection: "row", marginTop: 24 }}>
+          <View
+            style={{ display: "flex", flexDirection: "row", marginTop: 24 }}
+          >
             <Text>Have an account?</Text>
             <Pressable
               onPress={() => {
                 navigation.navigate("login/email");
               }}
             >
-              <Text style={{ color: "#004AAD", fontWeight: "800" }}> Sign in</Text>
+              <Text style={{ color: "#004AAD", fontWeight: "800" }}>
+                {" "}
+                Sign in
+              </Text>
             </Pressable>
           </View>
         </View>
