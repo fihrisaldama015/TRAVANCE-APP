@@ -7,9 +7,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/img/travance.png",
+      "image": "./assets/img/Landing.png",
       "backgroundColor": "#ffffff",
-      "padding": 10
+      "padding": 20
     },
     "updates": {
       "fallbackToCacheTimeout": 0

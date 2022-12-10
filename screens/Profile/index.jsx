@@ -14,12 +14,27 @@ import SVGHelp from "../../assets/svg/help.svg";
 import SVGTerms from "../../assets/svg/terms.svg";
 import SVGLogout from "../../assets/svg/logout.svg";
 import SVGArrow from "../../assets/svg/arrow.svg";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileScreen({ navigation }) {
+  let [userName, setUserName] = useState("");
+  let [user, setUser] = useState("");
+  useEffect(() => {
+    const getUserName = async () => {
+      const userJson = await AsyncStorage.getItem("user_travance");
+      user = JSON.parse(userJson);
+      setUser(user);
+      setUser(user);
+      userName = await AsyncStorage.getItem("username");
+      setUserName(userName);
+    };
+    getUserName();
+  }, []);
   return (
     <View>
       <SafeAreaView style={style.container}>
-        <LinearGradient style={style.profileCard} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.2 }} locations={[0.5, 1]} colors={["#4650FF", "rgba(196, 122, 255, 0.71)"]}>
+        <LinearGradient style={style.profileCard} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1.2 }} locations={[0.5, 1]} colors={["#4650FF", "#C47AFFB5"]}>
           <View
             style={{
               flexDirection: "row",
@@ -32,23 +47,56 @@ export default function ProfileScreen({ navigation }) {
           >
             <SVGProfile width={80} height={80} />
             <View style={{ flex: 1, paddingHorizontal: 16 }}>
-              <Text style={style.username}>Sample User Name</Text>
-              <Text style={style.userEmail}>usersample@gmail.com</Text>
+              <Text style={style.username}>{userName}</Text>
+              <Text style={style.userEmail}>{user.email}</Text>
               <View style={style.saldoSection}>
-                <Text style={{ color: "white", fontSize: 14 }}>Saldo : </Text>
-                <Text style={{ color: "white", fontSize: 22, fontWeight: "bold" }}>Rp. 116,95</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 14,
+                    fontWeight: "700",
+                    fontFamily: "poppins-regular",
+                  }}
+                >
+                  Saldo :{" "}
+                </Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 22,
+                    fontWeight: "bold",
+                    fontFamily: "poppins-regular",
+                  }}
+                >
+                  Rp. 116,95
+                </Text>
               </View>
               <View style={style.profitSection}>
-                <Text style={{ color: "white", marginRight: 4, fontSize: 11 }}>Profit :</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    marginRight: 4,
+                    fontSize: 14,
+                    fontFamily: "poppins-regular",
+                  }}
+                >
+                  Profit
+                </Text>
                 <View
                   style={{
                     backgroundColor: "white",
                     borderRadius: 32,
                     paddingVertical: 4,
-                    paddingHorizontal: 4,
+                    paddingHorizontal: 8,
                   }}
                 >
-                  <Text style={{ fontSize: 11 }}>+21.00%</Text>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    +21.00%
+                  </Text>
                 </View>
               </View>
             </View>
@@ -134,11 +182,14 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     borderBottomColor: "rgba(0, 0, 0, 0.1)",
     borderBottomWidth: 2,
-    paddingHorizontal: 16,
-    paddingVertical: 20,
+    paddingLeft: 20,
+    paddingRight: 28,
+    paddingVertical: 24,
   },
   optionTitle: {
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: "bold",
+    fontFamily: "poppins-regular",
   },
   saldoSection: {
     flexDirection: "row",
@@ -152,12 +203,14 @@ const style = StyleSheet.create({
   username: {
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "poppins-regular",
     color: "white",
   },
   userEmail: {
     fontSize: 12,
     color: "white",
     fontWeight: "300",
+    fontFamily: "poppins-regular",
     paddingBottom: 4,
     lineHeight: 14,
   },

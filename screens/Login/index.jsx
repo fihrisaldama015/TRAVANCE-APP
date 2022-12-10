@@ -14,11 +14,7 @@ export default function Login({ navigation }) {
         <View style={{ marginTop: 10 }}>
           {/* Login with Facebook */}
           <View style={{ marginTop: 25 }}>
-            <Pressable
-              onPress={() => {
-                console.log("login");
-              }}
-            >
+            <Pressable onPress={() => {}}>
               <View style={{ width: 300, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", borderWidth: 1, borderColor: "gray", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 14 }}>
                 <FacebookIcon />
                 <Text style={{ fontWeight: "bold", fontFamily: "poppins-regular", marginLeft: 10 }}>Continue With Facebook </Text>
@@ -40,11 +36,7 @@ export default function Login({ navigation }) {
           </View>
           {/* Login with Github */}
           <View style={{ marginTop: 25 }}>
-            <Pressable
-              onPress={() => {
-                console.log("login");
-              }}
-            >
+            <Pressable onPress={() => {}}>
               <View style={{ width: 300, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", borderWidth: 1, borderColor: "gray", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 14 }}>
                 <GithubIcon />
                 <Text style={{ fontWeight: "bold", fontFamily: "poppins-regular", marginLeft: 10 }}>Continue With Github </Text>
@@ -58,7 +50,6 @@ export default function Login({ navigation }) {
         <View style={{}}>
           <Pressable
             onPress={() => {
-              console.log("login");
               navigation.push("login/email");
             }}
           >
@@ -86,7 +77,6 @@ export default function Login({ navigation }) {
           <Text> Don't have any account?</Text>
           <Pressable
             onPress={() => {
-              console.log("press");
               navigation.navigate("login/email/signup");
             }}
           >

@@ -10,18 +10,16 @@ import Toast from "react-native-toast-message";
 export default function LoginEmailPassword({ navigation }) {
   const [email, onChangeEmail] = useState("");
   const [pass, onChangePass] = useState("");
-  const [visPass, setvisPass] = useState(true);
+  const [visPass, setvisPass] = useState(false);
 
   const pressSigninButton = async () => {
     try {
       if (email !== "" && pass !== "") {
-        console.log("login");
         await signInAuthUserWithEmailAndPassword(email, pass);
-
         Toast.show({
           type: "success",
-          text1: "Sign in success",
-          text2: "",
+          text1: "Succes",
+          text2: "Sign in success",
           topOffset: 0,
         });
       } else {
@@ -35,8 +33,8 @@ export default function LoginEmailPassword({ navigation }) {
     } catch (error) {
       Toast.show({
         type: "error",
-        text1: "field empty",
-        text2: error.code,
+        text1: "Sign in failed",
+        text2: "Wrong email or password",
         topOffset: 0,
       });
     }
@@ -44,8 +42,8 @@ export default function LoginEmailPassword({ navigation }) {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={-100}>
       <View style={{ backgroundColor: "white", display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
-        <Image style={{ width: 180 }} source={TravenceLogo} />
-        <Image style={{ marginTop: 8, marginBottom: 30 }} source={getstartedimage} />
+        <Image style={{ width: 180, marginBottom: 20 }} source={TravenceLogo} />
+        {/* <Image style={{ marginTop: 8, marginBottom: 30 }} source={getstartedimage} /> */}
         <View>
           <View style={{ width: 300, borderRadius: 10, borderColor: "gray", height: 40, margin: 12, borderWidth: 1, padding: 10, display: "flex", flexDirection: "row" }}>
             <EmailIcon style={{ marginRight: 5 }} />

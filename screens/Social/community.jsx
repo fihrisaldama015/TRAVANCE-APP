@@ -14,20 +14,12 @@ export default function SocialCommunityScreen({ navigation }) {
   const ChoseComp = () => {
     return (
       <View style={{ display: "flex", flexDirection: "row", marginVertical: 10, paddingHorizontal: 14 }}>
-        <Pressable
-          onPress={() => {
-            console.log("its pressed");
-          }}
-        >
+        <Pressable onPress={() => {}}>
           <View style={{ backgroundColor: "#4649FF", borderRadius: 10, padding: 4, width: 56, height: 26, display: "flex", justifyContent: "center", alignItems: "center", bordeRadius: 10 }}>
             <Text style={{ color: "white", fontWeight: "600", fontSize: 10 }}>Articles</Text>
           </View>
         </Pressable>
-        <Pressable
-          onPress={() => {
-            console.log("it's pressed");
-          }}
-        >
+        <Pressable onPress={() => {}}>
           <View style={{ backgroundColor: "white", width: 56, height: 26, display: "flex", justifyContent: "center", alignItems: "center", borderRadius: 10, marginLeft: 10 }}>
             <Text style={{ color: "black", fontWeight: "600", fontSize: 10 }}>Videos</Text>
           </View>
@@ -48,8 +40,8 @@ export default function SocialCommunityScreen({ navigation }) {
         <View>
           <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ marginTop: 20, paddingLeft: 10, display: "flex", flexDirection: "row", overflow: "scroll" }}>
             {/* Community Card */}
-            {listCommunity.map((community) => {
-              return <CommunityCard name={community.community_name} bg={community.bg} logo={community.logo} />;
+            {listCommunity.map((community, i) => {
+              return <CommunityCard key={i} name={community.community_name} bg={community.bg} logo={community.logo} />;
             })}
           </ScrollView>
         </View>

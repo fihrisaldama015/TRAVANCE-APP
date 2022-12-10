@@ -11,6 +11,7 @@ import StrategyScreen from "screens/Strategy";
 import ProfileScreen from "screens/Profile";
 import SocialCommunityScreen from "screens/Social/community";
 import SocialEducationScreen from "screens/Social/education";
+import EditProfileScreen from "screens/Login/editProfile";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Constants from "expo-constants";
 import Login from "screens/Login";
@@ -24,10 +25,24 @@ const TopTab = createMaterialTopTabNavigator();
 
 const Social = () => {
   return (
-    <TopTab.Navigator screenOptions={{ tabBarItemStyle: { marginTop: Constants.statusBarHeight }, tabBarLabelStyle: { fontSize: 12, fontWeight: "700" } }}>
+    <TopTab.Navigator
+      screenOptions={{
+        tabBarItemStyle: { marginTop: Constants.statusBarHeight },
+        tabBarLabelStyle: { fontSize: 12, fontWeight: "700" },
+      }}
+    >
       <TopTab.Screen options={{ headerShown: false, title: "Education" }} name="Social/Education" component={SocialEducationScreen} />
       <TopTab.Screen options={{ headerShown: false, title: "Community" }} name="Social/Community" component={SocialCommunityScreen} />
     </TopTab.Navigator>
+  );
+};
+
+const EditProfile = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen options={{ headerShown: false, title: "" }} name="Profile/Edit" component={EditProfileScreen} />
+      <Stack.Screen options={{ headerShown: false, title: "" }} name="Main/Home" component={InitialRoute} />
+    </Stack.Navigator>
   );
 };
 
@@ -116,8 +131,25 @@ const LoginRoute = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen options={{ headerShown: false }} name="login/index" component={Login} />
-      <Stack.Screen options={{ title: "", headerShadowVisible: false, headerStyle: { height: 10 } }} name="login/email" component={LoginEmailPassword} />
-      <Stack.Screen options={{ title: "", headerShadowVisible: false, headerStyle: { height: 10 } }} name="login/email/signup" component={SignUpEmailPassword} />
+      <Stack.Screen
+        options={{
+          title: "",
+          headerShadowVisible: false,
+          headerStyle: { height: 10 },
+        }}
+        name="login/email"
+        component={LoginEmailPassword}
+      />
+      <Stack.Screen
+        options={{
+          title: "",
+          headerShadowVisible: false,
+          headerStyle: { height: 10 },
+        }}
+        name="login/email/signup"
+        component={SignUpEmailPassword}
+      />
+      <Stack.Screen options={{ headerShown: false, title: "" }} name="Profile/Edit" component={EditProfileScreen} />
     </Stack.Navigator>
   );
 };
@@ -132,9 +164,7 @@ function Routes() {
           await AsyncStorage.setItem("user_travance", JSON.stringify(usercatch));
         };
         saveUser();
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     });
   }, []);
   useEffect(() => {
@@ -147,21 +177,17 @@ function Routes() {
         const saveUserName = async () => {
           try {
             await AsyncStorage.setItem("username", userName);
-          } catch (error) {
-            console.log("set error username :", error);
-          }
+          } catch (error) {}
         };
         saveUserName();
-      } catch (error) {
-        console.log("ERROR LOG :", error);
-      }
+      } catch (error) {}
     };
     getData();
   }, [user]);
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator>{!user ? <Stack.Screen options={{ headerShown: false }} name="login" component={LoginRoute} /> : <Stack.Screen options={{ headerShown: false }} name="initial" component={InitialRoute} />}</Stack.Navigator>
+        <Stack.Navigator>{!user ? <Stack.Screen options={{ headerShown: false }} name="login" component={LoginRoute} /> : <Stack.Screen options={{ headerShown: false }} name="initial" component={EditProfile} />}</Stack.Navigator>
       </NavigationContainer>
     </>
   );

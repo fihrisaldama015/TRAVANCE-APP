@@ -38,14 +38,12 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-  console.log("catch!!");
   if (!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
 export const signOutUser = async () => {
-  console.log("log out");
   await signOut(auth);
   Toast.show({
     type: "success",

@@ -11,20 +11,12 @@ export default function SocialScreen() {
   const ChoseComp = () => {
     return (
       <View style={{ display: "flex", flexDirection: "row", marginVertical: 10, paddingHorizontal: 14 }}>
-        <Pressable
-          onPress={() => {
-            console.log("its pressed");
-          }}
-        >
+        <Pressable onPress={() => {}}>
           <View style={{ backgroundColor: "#4649FF", borderRadius: 10, padding: 4, width: 56, height: 26, display: "flex", justifyContent: "center", alignItems: "center", bordeRadius: 10 }}>
             <Text style={{ color: "white", fontWeight: "600", fontSize: 10 }}>Articles</Text>
           </View>
         </Pressable>
-        <Pressable
-          onPress={() => {
-            console.log("it's pressed");
-          }}
-        >
+        <Pressable onPress={() => {}}>
           <View style={{ backgroundColor: "white", width: 56, height: 26, display: "flex", justifyContent: "center", alignItems: "center", borderRadius: 10, marginLeft: 10 }}>
             <Text style={{ color: "black", fontWeight: "600", fontSize: 10 }}>Videos</Text>
           </View>
@@ -37,20 +29,12 @@ export default function SocialScreen() {
       {/* comp header */}
       <View style={{ display: "flex", flexDirection: "row", width: "100%", height: 40, backgroundColor: "white" }}>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", borderBottomColor: "blue", borderBottomWidth: 2 }}>
-          <Pressable
-            onPress={() => {
-              console.log("click");
-            }}
-          >
+          <Pressable onPress={() => {}}>
             <Text style={{ fontSize: 14, fontFamily: "poppins-regular", fontWeight: "700" }}>Community</Text>
           </Pressable>
         </View>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Pressable
-            onPress={() => {
-              console.log("click");
-            }}
-          >
+          <Pressable onPress={() => {}}>
             <Text style={{ fontSize: 14, fontFamily: "poppins-regular", fontWeight: "700" }}>Education</Text>
           </Pressable>
         </View>

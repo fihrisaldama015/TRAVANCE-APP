@@ -23,7 +23,6 @@ function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    console.log("!fontloaded");
     return null;
   }
 

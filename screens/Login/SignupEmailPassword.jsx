@@ -11,7 +11,7 @@ import Toast from "react-native-toast-message";
 export default function SignUpEmailPassword({ navigation }) {
   const [email, onChangeEmail] = useState("");
   const [pass, onChangePass] = useState("");
-  const [visPass, setvisPass] = useState(true);
+  const [visPass, setvisPass] = useState(false);
   const pressSignupButton = async () => {
     try {
       if (email !== "" && pass !== "") {
@@ -40,7 +40,7 @@ export default function SignUpEmailPassword({ navigation }) {
           errorMessage = "Email already use";
           break;
         default:
-          // errorMessage = "Error occured!!";
+          errorMessage = "Error occured!!";
           break;
       }
       Toast.show({
@@ -63,16 +63,56 @@ export default function SignUpEmailPassword({ navigation }) {
       }}
     >
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={-100}>
-        <View style={{ backgroundColor: "white", display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+        <View
+          style={{
+            backgroundColor: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
           <Image style={{ width: 180 }} source={TravenceLogo} />
           <Image style={{ marginTop: 8, marginBottom: 30 }} source={getstartedimage} />
           <View>
-            <View style={{ width: 300, borderRadius: 10, borderColor: "gray", height: 40, margin: 12, borderWidth: 1, padding: 10, display: "flex", flexDirection: "row" }}>
+            <View
+              style={{
+                width: 300,
+                borderRadius: 10,
+                borderColor: "gray",
+                height: 40,
+                margin: 12,
+                borderWidth: 1,
+                padding: 10,
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
               <EmailIcon style={{ marginRight: 5 }} />
               <TextInput style={{ width: 250 }} placeholder="Email" cursorColor={"gray"} onChangeText={onChangeEmail} value={email} />
             </View>
-            <View style={{ width: 300, borderRadius: 10, borderColor: "gray", height: 40, margin: 12, borderWidth: 1, padding: 10, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-              <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+            <View
+              style={{
+                width: 300,
+                borderRadius: 10,
+                borderColor: "gray",
+                height: 40,
+                margin: 12,
+                borderWidth: 1,
+                padding: 10,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
                 <PassIcon style={{ marginRight: 5 }} />
                 <TextInput
                   style={{ width: 200 }}
@@ -120,7 +160,16 @@ export default function SignUpEmailPassword({ navigation }) {
                   borderRadius: 14,
                 }}
               >
-                <Text style={{ color: "white", fontWeight: "700", fontFamily: "poppins-regular", marginLeft: 10 }}>Sign up With Email & Password</Text>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "700",
+                    fontFamily: "poppins-regular",
+                    marginLeft: 10,
+                  }}
+                >
+                  Sign up With Email & Password
+                </Text>
               </View>
             </Pressable>
           </View>
@@ -130,13 +179,47 @@ export default function SignUpEmailPassword({ navigation }) {
           </View>
           {/* login click container */}
           <View style={{ display: "flex", flexDirection: "row" }}>
-            <View style={{ width: 56, height: 56, borderColor: "gray", borderWidth: 1, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                width: 56,
+                height: 56,
+                borderColor: "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <FacebookIcon style={{ width: 15, height: 15 }} />
             </View>
-            <View style={{ marginHorizontal: 60, width: 56, height: 56, borderColor: "gray", borderWidth: 1, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                marginHorizontal: 60,
+                width: 56,
+                height: 56,
+                borderColor: "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <GoogleIcon style={{ width: 15, height: 15 }} />
             </View>
-            <View style={{ width: 56, height: 56, borderColor: "gray", borderWidth: 1, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <View
+              style={{
+                width: 56,
+                height: 56,
+                borderColor: "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <GithubIcon style={{ width: 15, height: 15 }} />
             </View>
           </View>
