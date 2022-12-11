@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "hermes",
     "name": "travance",
     "slug": "travance",
     "version": "1.0.0",
@@ -14,7 +15,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -30,7 +33,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "32c34868-c9b4-4046-b5b4-d24f2732c10a"
+        "projectId": "f03b9ef8-6d03-46fc-b1f2-73fc9db5ccee"
       }
     }
   }
